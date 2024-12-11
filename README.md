@@ -1,6 +1,6 @@
 # weible_astr513_501_final_project
 
-This code includes a small-sample version of the results I presented in class.
+This code includes a small-sample version of the results I presented in class on 2-D kernel density estimation for corner plot generation.
 
 ```orbit_2d_kde_example_notebook_weible.ipynb``` is a complete, working example of processing 1000 8-dimensional samples of orbital and physical parameters into a corner plot with KDEs. This is a smaller sample than I showed in class so that everything can comply with GitHub's file size restrictions, and decrease computation time. The code should be extensible to at least ~10^7 8-dimensional samples (the most I have tested).
 
