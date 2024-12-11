@@ -19,8 +19,8 @@ def generate_corner_plots(
     bw_rule="silvermans",
     plot_raw_kde=False,
     min_contour_lw=0.75,
-    fftkde_res=2**25, # default
-    scatter_alpha = 10/510,
+    fftkde_res=2**25,  # default
+    scatter_alpha=10 / 510,
     lw=2,
     scatter_cmp_val=0.55,
     fill_alpha=0.2,
@@ -33,12 +33,17 @@ def generate_corner_plots(
     ann_title=True,
     cmap_min=0.1,
     show_peak_x_mid=True,
-    show_peak_y_mid=True
+    show_peak_y_mid=True,
+    scatter_size_fac=4,
+    hist_bins=400,
+    jpeg=False
 ):
     """Generate corner plots sequentially"""
 
-    for i in range(len(param_list)):#np.arange(3,len(param_list)):##
-        for j in range(len(param_list)):#np.arange(6, len(param_list)):#range(len(param_list)):
+    for i in range(len(param_list)):  # np.arange(3,len(param_list)):##
+        for j in range(
+            len(param_list)
+        ):  # np.arange(6, len(param_list)):#range(len(param_list)):
             # Set axis label visibility
             show_ylabel = i == 0
             show_xlabel = j == len(param_list) - 1
@@ -82,7 +87,7 @@ def generate_corner_plots(
                             scatter_alpha=scatter_alpha,
                             show_xlabel=show_xlabel,
                             show_ylabel=show_ylabel,
-                            jpeg=False,
+                            jpeg=jpeg,
                             plot_raw_kde=plot_raw_kde,
                             size_fac=size_fac,
                             base_margin=base_margin,
@@ -91,7 +96,8 @@ def generate_corner_plots(
                             base_size=base_size,
                             ylab_offset=ylab_offset,
                             show_peak_x_mid=show_peak_x_mid,
-                            show_peak_y_mid=show_peak_y_mid
+                            show_peak_y_mid=show_peak_y_mid,
+                            scatter_size_fac=scatter_size_fac,
                         )
 
                     del element_y
@@ -126,7 +132,7 @@ def generate_corner_plots(
                             annotate=annotate,
                             show_xlabel=show_xlabel,
                             show_ylabel=False,
-                            jpeg=False,
+                            jpeg=jpeg,
                             fftkde_res=fftkde_res,
                             lw=lw,
                             fill_alpha=fill_alpha,
@@ -139,8 +145,8 @@ def generate_corner_plots(
                             no_ticks=True,
                             no_tick_labels=True,
                             plot_hist=True,
-                            hist_bins=400,
-                            hist_color='lightgray'
+                            hist_bins=hist_bins,
+                            hist_color="lightgray",
                         )
 
                     plt.close("all")

@@ -761,6 +761,7 @@ def off_diagonal_fftkde_plot(
     show_peak_x_mid=True,
     show_peak_y_mid=True,
     lw=2,
+    scatter_size_fac=4,
 ):
     """
     creates a 2-D FFTKDE plot for parameters "param_x, param_y"
@@ -1112,7 +1113,7 @@ def off_diagonal_fftkde_plot(
 
     # Plot scatter points with adjusted size
     print("scattering points...")
-    scatter_size = (4 * 72.0 / dpi) ** 2  # 4x4 pixels
+    scatter_size = (4 * 72.0 * scatter_size_fac / dpi) ** 2  # 4x4 pixels
     ax.scatter(
         x_outside,
         y_outside,

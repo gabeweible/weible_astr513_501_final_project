@@ -215,7 +215,11 @@ def plot_orbits(
     plot_astrometry=True,
     plot_astrometry_insts=False,
     plot_errorbars=True,
-    fig=None, ms=5, capsize=2,elinewidth=1,capthick=1
+    fig=None,
+    ms=5,
+    capsize=2,
+    elinewidth=1,
+    capthick=1,
 ):
     """
     Plots one orbital period for a select number of fitted orbits
@@ -247,7 +251,7 @@ def plot_orbits(
         plot_astrometry_insts (Boolean): set to False by default. Plots the astrometric data by instruments.
         plot_errorbars (Boolean): set to True by default. Plots error bars of measurements
         fig (matplotlib.pyplot.Figure): optionally include a predefined Figure object to plot the orbit on.
-            Most users will not need this keyword. 
+            Most users will not need this keyword.
 
     Return:
         ``matplotlib.pyplot.Figure``: the orbit plot if input is valid, ``None`` otherwise
@@ -360,7 +364,7 @@ def plot_orbits(
         for i in np.arange(num_orbits_to_plot):
             # Compute period (from Kepler's third law)
             period = np.sqrt(
-                4 * np.pi ** 2.0 * (sma * u.AU) ** 3 / (consts.G * (mtot * u.Msun))
+                4 * np.pi**2.0 * (sma * u.AU) ** 3 / (consts.G * (mtot * u.Msun))
             )
             period = period.to(u.day).value
 
@@ -425,10 +429,12 @@ def plot_orbits(
         if fig is None:
             fig = plt.figure(figsize=(14, 6))
             if rv_time_series:
-                #fig = plt.figure(figsize=(28, 18))
+                # fig = plt.figure(figsize=(28, 18))
                 fig = plt.figure(figsize=(14, 9))
                 # spans 11 rows out of 18, and 6 columns out of 14
-                ax = plt.subplot2grid((40, 16), (0, 0), rowspan=23, colspan=6)# orbits axis
+                ax = plt.subplot2grid(
+                    (40, 16), (0, 0), rowspan=23, colspan=6
+                )  # orbits axis
             else:
                 fig = plt.figure(figsize=(14, 6))
                 ax = plt.subplot2grid((2, 14), (0, 0), rowspan=2, colspan=6)
@@ -568,17 +574,19 @@ def plot_orbits(
                         yerr = None
 
                     ax.errorbar(
-                        ra/1000,
-                        dec/1000,
-                        xerr=xerr/1000,
-                        yerr=yerr/1000,
+                        ra / 1000,
+                        dec / 1000,
+                        xerr=xerr / 1000,
+                        yerr=yerr / 1000,
                         marker=next(ax_symbols),
                         c=next(ax_colors),
                         zorder=10,
                         label=astr_insts[i],
                         linestyle="",
                         ms=ms,
-                        capsize=capsize,elinewidth=elinewidth,capthick=capthick
+                        capsize=capsize,
+                        elinewidth=elinewidth,
+                        capthick=capthick,
                     )
             else:
                 if plot_errorbars:
@@ -589,15 +597,18 @@ def plot_orbits(
                     yerr = None
 
                 ax.errorbar(
-                    ra_data/1000,
-                    dec_data/1000,
-                    xerr=xerr/1000,
-                    yerr=yerr/1000,
+                    ra_data / 1000,
+                    dec_data / 1000,
+                    xerr=xerr / 1000,
+                    yerr=yerr / 1000,
                     marker="o",
                     c="k",
                     zorder=10,
                     linestyle="",
-                    ms=ms,capsize=capsize,elinewidth=elinewidth,capthick=capthick
+                    ms=ms,
+                    capsize=capsize,
+                    elinewidth=elinewidth,
+                    capthick=capthick,
                 )
 
         # modify the axes
@@ -616,14 +627,14 @@ def plot_orbits(
         if rv_time_series:
             # sep vs. time
             ax1 = plt.subplot2grid((40, 16), (0, 10), colspan=6, rowspan=11)
-            ax1.tick_params(labelbottom=False) # no year numbers, they're below
-            
+            ax1.tick_params(labelbottom=False)  # no year numbers, they're below
+
             # pa vs. time
             ax2 = plt.subplot2grid((40, 16), (12, 10), colspan=6, rowspan=11)
-            
+
             # RV vs. time
             ax3 = plt.subplot2grid((40, 16), (29, 0), colspan=16, rowspan=12)
-            
+
             ax2.set_ylabel("PA [$^{{\\circ}}$]")
             ax1.set_ylabel("$\\rho$ [mas]")
             ax3.set_ylabel("RV [km/s]")
@@ -727,7 +738,9 @@ def plot_orbits(
                     c=next(ax1_colors),
                     zorder=10,
                     label=astr_insts[i],
-                    capsize=capsize,elinewidth=elinewidth,capthick=capthick
+                    capsize=capsize,
+                    elinewidth=elinewidth,
+                    capthick=capthick,
                 )
                 plt.sca(ax2)
                 plt.errorbar(
@@ -739,7 +752,9 @@ def plot_orbits(
                     marker=next(ax2_symbols),
                     c=next(ax2_colors),
                     zorder=10,
-                    capsize=capsize,elinewidth=elinewidth,capthick=capthick
+                    capsize=capsize,
+                    elinewidth=elinewidth,
+                    capthick=capthick,
                 )
             plt.sca(ax1)
             plt.legend(title="Instruments", bbox_to_anchor=(1.3, 1), loc="upper right")
@@ -769,7 +784,9 @@ def plot_orbits(
                         / (max_cbar_date_bepoch - min_cbar_date_bepoch)
                     ),
                     zorder=2,
-                    capsize=capsize,elinewidth=elinewidth,capthick=capthick
+                    capsize=capsize,
+                    elinewidth=elinewidth,
+                    capthick=capthick,
                 )
 
             plt.sca(ax2)
@@ -786,7 +803,9 @@ def plot_orbits(
                         / (max_cbar_date_bepoch - min_cbar_date_bepoch)
                     ),
                     zorder=2,
-                    capsize=capsize,elinewidth=elinewidth,capthick=capthick
+                    capsize=capsize,
+                    elinewidth=elinewidth,
+                    capthick=capthick,
                 )
 
         if rv_time_series:
@@ -840,8 +859,8 @@ def plot_orbits(
             ax3_symbols = itertools.cycle(symbols)
 
             # get rvs and plot them
-            min_epoch_i = 3000# Bessellian big number
-            max_epoch_i = 1000# Bessellian small number
+            min_epoch_i = 3000  # Bessellian big number
+            max_epoch_i = 1000  # Bessellian small number
             for i, name in enumerate(inds.keys()):
                 inst_data = rv_data[inds[name]]
                 rvs = inst_data["quant1"]
@@ -852,10 +871,8 @@ def plot_orbits(
                 rvs -= best_post[results.param_idx[gams[i]]]
                 if plot_errorbars:
                     yerr = inst_data["quant1_err"]
-                    yerr = np.sqrt(
-                        yerr ** 2 + best_post[results.param_idx[sigs[i]]] ** 2
-                    )
-                for i,epoch in enumerate(epochs):
+                    yerr = np.sqrt(yerr**2 + best_post[results.param_idx[sigs[i]]] ** 2)
+                for i, epoch in enumerate(epochs):
                     plt.errorbar(
                         epoch,
                         rvs[i],
@@ -869,8 +886,10 @@ def plot_orbits(
                         ),
                         label=name,
                         zorder=5,
-                        capsize=capsize,elinewidth=elinewidth,capthick=capthick
-                        )
+                        capsize=capsize,
+                        elinewidth=elinewidth,
+                        capthick=capthick,
+                    )
             if len(inds.keys()) == 1 and "defrv" in inds.keys():
                 pass
             else:
@@ -882,11 +901,26 @@ def plot_orbits(
             #    start_mjd,
             #    Time(sep_pa_end_year, format="decimalyear").mjd,
             #    num_epochs_to_plot,
-            #)
-            my_min_epoch = np.min([start_mjd, Time(min_epoch_i, format='decimalyear').mjd])
-            my_max_epoch = np.max([np.max(epochs_seppa[0, :]), Time(max_epoch_i, format='decimalyear').mjd])
-            
-            epochs_rv = np.linspace(my_min_epoch, my_max_epoch, int(num_epochs_to_plot*(my_max_epoch-my_min_epoch)/(np.max(epochs_seppa[0,:])-np.min(epochs_seppa[0,:]))))
+            # )
+            my_min_epoch = np.min(
+                [start_mjd, Time(min_epoch_i, format="decimalyear").mjd]
+            )
+            my_max_epoch = np.max(
+                [
+                    np.max(epochs_seppa[0, :]),
+                    Time(max_epoch_i, format="decimalyear").mjd,
+                ]
+            )
+
+            epochs_rv = np.linspace(
+                my_min_epoch,
+                my_max_epoch,
+                int(
+                    num_epochs_to_plot
+                    * (my_max_epoch - my_min_epoch)
+                    / (np.max(epochs_seppa[0, :]) - np.min(epochs_seppa[0, :]))
+                ),
+            )
             _, _, vz = kepler.calc_orbit(
                 epochs_rv,
                 best_post[results.standard_param_idx["sma{}".format(object_to_plot)]],
@@ -913,7 +947,7 @@ def plot_orbits(
 
         # add colorbar
         if show_colorbar:
-#            if rv_time_series:
+            #            if rv_time_series:
             # Create an axes for colorbar. The position of the axes is calculated based on the position of ax.
             # You can change x1.0.05 to adjust the distance between the main image and the colorbar.
             # You can change 0.02 to adjust the width of the colorbar.
@@ -932,16 +966,16 @@ def plot_orbits(
                 orientation="vertical",
                 label=cbar_param,
             )
-#            else:
-#                # xpos, ypos, width, height, in fraction of figure size
-#                cbar_ax = fig.add_axes([0.47, 0.15, 0.015, 0.7])
-#                cbar = mpl.colorbar.ColorbarBase(
-#                    cbar_ax,
-#                    cmap=cmap,
-#                    norm=norm_yr,
-#                    orientation="vertical",
-#                    label=cbar_param,
-#                )
+        #            else:
+        #                # xpos, ypos, width, height, in fraction of figure size
+        #                cbar_ax = fig.add_axes([0.47, 0.15, 0.015, 0.7])
+        #                cbar = mpl.colorbar.ColorbarBase(
+        #                    cbar_ax,
+        #                    cmap=cmap,
+        #                    norm=norm_yr,
+        #                    orientation="vertical",
+        #                    label=cbar_param,
+        #                )
 
         ax1.locator_params(axis="x", nbins=6)
         ax1.locator_params(axis="y", nbins=6)
@@ -1011,7 +1045,7 @@ def my_plot_orbits(
         plot_astrometry_insts (Boolean): set to False by default. Plots the astrometric data by instruments.
         plot_errorbars (Boolean): set to True by default. Plots error bars of measurements
         fig (matplotlib.pyplot.Figure): optionally include a predefined Figure object to plot the orbit on.
-            Most users will not need this keyword. 
+            Most users will not need this keyword.
 
     Return:
         ``matplotlib.pyplot.Figure``: the orbit plot if input is valid, ``None`` otherwise
@@ -1124,7 +1158,7 @@ def my_plot_orbits(
         for i in np.arange(num_orbits_to_plot):
             # Compute period (from Kepler's third law)
             period = np.sqrt(
-                4 * np.pi ** 2.0 * (sma * u.AU) ** 3 / (consts.G * (mtot * u.Msun))
+                4 * np.pi**2.0 * (sma * u.AU) ** 3 / (consts.G * (mtot * u.Msun))
             )
             period = period.to(u.day).value
 
@@ -1634,9 +1668,7 @@ def my_plot_orbits(
                 rvs -= best_post[results.param_idx[gams[i]]]
                 if plot_errorbars:
                     yerr = inst_data["quant1_err"]
-                    yerr = np.sqrt(
-                        yerr ** 2 + best_post[results.param_idx[sigs[i]]] ** 2
-                    )
+                    yerr = np.sqrt(yerr**2 + best_post[results.param_idx[sigs[i]]] ** 2)
                 for i, epoch in enumerate(epochs):
                     plt.errorbar(
                         epoch,
@@ -1850,7 +1882,7 @@ def plot_orbits_from_post(
     num_epochs_to_plot=100,
     square_plot=True,
     show_colorbar=True,
-    cmap='viridis',
+    cmap="viridis",
     sep_pa_color="lightgrey",
     sep_pa_end_year=2025.0,
     cbar_param="Epoch [year]",
@@ -1860,7 +1892,7 @@ def plot_orbits_from_post(
     plot_astrometry_insts=False,
     plot_errorbars=True,
     fig=None,
-    ms=5
+    ms=5,
 ):
     """
     Plots one orbital period for a select number of fitted orbits
@@ -1892,7 +1924,7 @@ def plot_orbits_from_post(
         plot_astrometry_insts (Boolean): set to False by default. Plots the astrometric data by instruments.
         plot_errorbars (Boolean): set to True by default. Plots error bars of measurements
         fig (matplotlib.pyplot.Figure): optionally include a predefined Figure object to plot the orbit on.
-            Most users will not need this keyword. 
+            Most users will not need this keyword.
 
     Return:
         ``matplotlib.pyplot.Figure``: the orbit plot if input is valid, ``None`` otherwise
@@ -1988,7 +2020,7 @@ def plot_orbits_from_post(
         for i in np.arange(num_orbits_to_plot):
             # Compute period (from Kepler's third law)
             period = np.sqrt(
-                4 * np.pi ** 2.0 * (sma * u.AU) ** 3 / (consts.G * (mtot * u.Msun))
+                4 * np.pi**2.0 * (sma * u.AU) ** 3 / (consts.G * (mtot * u.Msun))
             )
             period = period.to(u.day).value
 
@@ -2483,7 +2515,7 @@ def plot_orbits_from_post(
                 rvs -= best_post[lab[gams[i]]]
                 if plot_errorbars:
                     yerr = inst_data["quant1_err"]
-                    yerr = np.sqrt(yerr ** 2 + best_post[lab[sigs[i]]] ** 2)
+                    yerr = np.sqrt(yerr**2 + best_post[lab[sigs[i]]] ** 2)
 
                 # print(f'Plotting epochs:{epochs} and rvs:{rvs} with yerr:{yerr}')
                 plt.errorbar(
@@ -2572,18 +2604,18 @@ def plot_orbits_from_post(
 
 def my_chop_chains(post, lnlike, burn, num_walkers, trim=0):
     """
-        Permanently removes steps from beginning (and/or end) of chains from the
-        Results object. Also updates `curr_pos` if steps are removed from the
-        end of the chain.
+    Permanently removes steps from beginning (and/or end) of chains from the
+    Results object. Also updates `curr_pos` if steps are removed from the
+    end of the chain.
 
-        Args:
-            burn (int): The number of steps to remove from the beginning of the chains
-            trim (int): The number of steps to remove from the end of the chians (optional)
+    Args:
+        burn (int): The number of steps to remove from the beginning of the chains
+        trim (int): The number of steps to remove from the end of the chians (optional)
 
-        .. Warning:: Does not update bookkeeping arrays within `MCMC` sampler object.
+    .. Warning:: Does not update bookkeeping arrays within `MCMC` sampler object.
 
-        (written): Henry Ngo, 2019
-        """
+    (written): Henry Ngo, 2019
+    """
 
     # Retrieve information from results object
     flatchain = np.copy(post)
@@ -2924,6 +2956,7 @@ def my_examine_chains(
 
     return fig
 
+
 def y_jump_hist(orb_element_y, cutoff=None, xlim=None):
     """
     Make a histogram of the jump in histogram y-values for an orbital element dist.
@@ -3167,8 +3200,8 @@ def element_hist(
 ):
     # Configure matplotlib with consistent styling
     configure_matplotlib(dpi, size_fac)
-    
-    fig, ax = plt.subplots(dpi=dpi, figsize=(10,10))
+
+    fig, ax = plt.subplots(dpi=dpi, figsize=(10, 10))
 
     # Set base font sizes
     base_fontsize = 14 * size_fac
@@ -3204,9 +3237,9 @@ def element_hist(
         bottom=bottom_margin,
         top=1 - top_margin,
     )
-    
-    print(f'element: {element}')
-    print(f'bins: {bins}')
+
+    print(f"element: {element}")
+    print(f"bins: {bins}")
     # Plot histogram
     y, x, _ = hist(
         element,
@@ -3216,7 +3249,7 @@ def element_hist(
         color=color,
         alpha=alpha,
     )
-    
+
     bins = y.size
 
     # Vectorized computation of bin centers
