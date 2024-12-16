@@ -10,7 +10,7 @@ Sample images of the Jupyter Notebook output, as it is currently configured, are
 
 ```fftkde_cred_int.py``` contains functions to compute credible intervals, 1-D KDE plots, and 2-D KDE plots. Helper functions for 2-D KDEs establish which points to scatter around the outermost contour of the KDE shown.
 
-```modified_plot.py``` contains functions to plot a standard histogram, configure matplotlib parameters, and determine credible intervals and maximum a posterior estimates from histograms.
+```modified_plot.py``` contains functions to plot a standard histogram, configure matplotlib parameters, and determine credible intervals and maximum a posteriori estimates from histograms.
 
 ```parallel_plots.py``` contains a function, ```generate_corner_plots()```, which calls ```fftkde_plot()``` and ```off_diagonal_fftkde_plot()``` from ```fftkde_cred_int.py``` in a loop to generate the diagonal and off-diagonal subplots of a larger corner plot, which can be manually stacked together in, e.g., Photoshop or GIMP.
 
